@@ -1,10 +1,11 @@
 
 
-Feature: Validar login com sucesso no QA pratice
+Feature: Realizar login com sucesso
 
 
   Scenario: Realizar login com sucesso
     Given que acesso o site QA Pratice
-    When eu preencho os dados para cadastro
-    And eu clico no botão registrar
-    Then deve ser possivel cadastrar usuario com sucesso
+    When eu preencho os dados Email e Password
+    And eu clico no botão login
+    Then deve ser possivel realizar login com sucesso
+

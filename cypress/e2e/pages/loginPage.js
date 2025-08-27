@@ -1,43 +1,33 @@
 require('cypress-xpath');
 import PageBase from './pageBase/base';
 
-export default class LoginPage extends PageBase {
+export default class MenuPageLogin extends PageBase {
     elements = {
-      popUpKabum:    () => cy.get('button[id="onetrust-accept-btn-handler"]'),
-      inputLogin:    () => cy.get('input[name="login"]'),
-      inputPassword: () => cy.get('input[name="password"]'),
-      buttomLogin:   () => cy.get('button[data-testid="login-submit-button"]')
+      
+      preencherEmail:   () => cy.xpath('//input[@id="email"]'),
+      preencherSenha: () => cy.xpath('//input[@id="password"]'),
+      clicarbotaologin: () => cy.xpath('//button[@id="submitLoginBtn"]'),
+      CampoTituloLogin: () => cy.xpath('//h2[@class="section-header"]')
 
     }
   
-
-    clickPopUp() {
-      this.elements.popUpKabum().click()
+    preencherEmail() {
+      this.elements.preencherEmail().type('admin@admin.com')
     }
 
-  
-    fillEmail(email) {
-      this.elements.inputLogin().type(email)
+    preencherSenha() {
+      this.elements.preencherSenha().type('admin123')
     }
 
-    fillEmailBase(email) {
-      this.sendKeys(this.elements.inputLogin, email)
+    clicarbotaologin() {
+      this.elements.clicarbotaologin().click()
     }
-  
-    fillPassword(password) {
-      this.elements.inputPassword().type(password);
+
+    validarAcessoaPagina() {
+
+      // timeout 
+      this.elements.CampoTituloLogin().should('have.text', 'SHOPPING CART', { timeout: 7000 })
     }
-  
-    clickLoginButton() {
-      this.elements.buttomLogin().click();
-    }
-  
-    dadosInvalidosVisivelLogin(element) {    
-    this.visibleContains(element)
-    
+
+
   }
-    
-  }
-  
-  //
-  
